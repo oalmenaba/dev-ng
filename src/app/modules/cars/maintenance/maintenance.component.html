@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <div class="display-4">
+        Autos
+    </div>
+    <div class="w-50">
+        <form [formGroup]="frmCarRx" (ngSubmit)="sendInfo()">
+            <div class="h4">
+                Ingresar auto
+            </div>
+            <div id='carsFormControl'>
+                <div>
+                    <label for="marcaid">Marca</label>
+                    <input class="form-control" formControlName="marca" type="text" name="marcaname" id="marcaid">
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('marca')?.touched && frmCarRx.get('marca')?.errors?.['required']">
+                        La marca no puede estar vacía
+                    </div>
+                    <div class="alert alert-warning" *ngIf="frmCarRx.get('marca')?.errors?.['minlength']">
+                        La marca debe tener al menos 4 digitos
+                    </div>
+                </div>
+                <!-- Agregar los 2 campos faltantes del formulario reactivo.-->
+                <div>
+                    <label for="modeloid">Modelo</label>
+                    <input class="form-control" type="text" formControlName="modelo" name="modeloname" id="modeloid">
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('modelo')?.touched && frmCarRx.get('modelo')?.errors?.['required']">
+                        La modelo no puede estar vacío
+                    </div>
+                    <div class="alert alert-warning" *ngIf="frmCarRx.get('modelo')?.errors?.['minlength']">
+                        El modelo debe tener al menos {{ frmCarRx.get('modelo')?.errors?.['minlength']?.requiredLength }} digitos
+                    </div>
+                    <div class="alert alert-warning" *ngIf="frmCarRx.get('modelo')?.errors?.['pattern']">
+                        El modelo solo debe tener may&uacute;sculas.
+                    </div>
+                </div>
+                <div>
+                    <label for="anioid">A&ntilde;o</label>
+                    <input class="form-control" type="text" formControlName="anio" name="anioname" id="anioid">
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('anio')?.touched && frmCarRx.get('anio')?.errors?.['required']">
+                        El a&ntilde;o no puede estar vacío
+                    </div>
+                    <div class="alert alert-warning" *ngIf="frmCarRx.get('anio')?.errors?.['max']">
+                        El a&ntilde;o no puede ser mayor a {{ frmCarRx.get('anio')?.errors?.['max']?.max }}
+                    </div>
+                    <div class="alert alert-danger" *ngIf="frmCarRx.get('anio')?.errors?.['pattern']">
+                        El a&ntilde;o solo acepta n&uacute;meros.
+                    </div>
+                </div>
+                <div>
+                    <label for="tipoid">Tipo</label>
+                    <select class="form-control" formControlName="tipo" name="tiponame" id="tipoid">
+                        <option [value]="''">Seleccione una opci&oacute;n...</option>
+                        <option [value]="'SUV'">SUV</option>
+                        <option [value]="'SEDAN'">SEDAN</option>
+                    </select>
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('tipo')?.touched && frmCarRx.get('tipo')?.errors?.['required']">
+                        No ha seleccionado un tipo de auto
+                    </div>
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('tipo')?.touched && frmCarRx.get('tipo')?.errors?.['minlength']">
+                        El tipo debe tener al menos {{ frmCarRx.get('tipo')?.errors?.['minlength']?.requiredLength }} carateres
+                    </div>
+                    <div class="alert alert-warning"
+                        *ngIf="frmCarRx.get('tipo')?.touched && frmCarRx.get('tipo')?.errors?.['maxlength']">
+                        El tipo debe no puede tener m&aacute;s de {{ frmCarRx.get('tipo')?.errors?.['maxlength']?.requiredLength }} carateres
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" type="submit">Guardar</button>
+            <app-aditional-attrib (newControlEvent)="newControl($event)"></app-aditional-attrib>
+        </form>
+    </div>
+</div>

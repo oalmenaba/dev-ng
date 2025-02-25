@@ -1,0 +1,32 @@
+<!-- #personForm="ngForm" : Formulario del tipo template-driven -->
+<form #personForm="ngForm" (ngSubmit)="savePersonMaintenance(personForm)"> 
+    <!-- 
+    establecer labels y campos de entrada nombres, apellidos,identificacion, email y contraseña. 
+    -->
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" [(ngModel)]="nombre" [minlength]="10" [required]="true" #nombreForm="ngModel" name="nombre"  id="nombre">
+        <div [hidden]="nombreForm.valid || nombreForm.pristine" class="alert alert-warning">Campo invalido</div>
+    </div>
+    <div>
+        <label for="nombre">Apellido:</label>
+        <input type="text" class="form-control" [(ngModel)]="apellido" [minlength]="10" [required]="true" #apellidoForm="ngModel" name="apellido"  id="apellido">
+        <div [hidden]="apellidoForm.valid || apellidoForm.pristine" class="alert alert-warning">El apellido debe tener al menos 10 caracteres</div>
+    </div>
+    <div>
+        <label for="nombre">Identificaci&oacute;n:</label>
+        <input type="text" class="form-control" [(ngModel)]="identificacion" [minlength]="10" [maxlength]="13" [required]="true" #identificacionForm="ngModel" name="identificacion"  id="identificacion">
+        <div [hidden]="identificacionForm.valid || identificacionForm.pristine" class="alert alert-warning">Campo invalido</div>
+    </div>
+    <div>
+        <label for="nombre">Email:</label>
+        <input type="text" class="form-control" [(ngModel)]="email" [minlength]="15" [required]="true" [email]="true" #emailForm="ngModel" name="email"  id="email">
+        <div [hidden]="emailForm.valid || emailForm.pristine" class="alert alert-warning">Campo invalido</div>
+    </div>
+    <div>
+        <label for="contrasenia">Contrase&ntilde;a:</label>
+        <input type="password" class="form-control" [(ngModel)]="contrasenia" [minlength]="15" [required]="true" #contraseniaForm="ngModel" name="contrasenia"  id="contrasenia">
+        <div [hidden]="contraseniaForm.valid || contraseniaForm.pristine" class="alert alert-warning">Campo invalido</div>
+    </div>
+    <button class="btn btn-success" type="submit">Guardar</button>
+</form>

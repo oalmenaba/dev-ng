@@ -1,0 +1,74 @@
+<div>
+    <div class="h4">
+        Actualizar roles
+    </div>
+    <div class="d-flex">
+        <div class="w-50">
+            <p><b>Usuario:</b> {{username}} </p>
+            <p><b>Email:</b> {{email}} </p>
+        </div>
+        <div class="d-grid w-50 justify-content-end">
+            <div>
+                <button class="btn btn-success" type="button" (click)="outEventClick()"><i class="fa fa-save"></i> Guardar</button>
+            </div>
+            <div>
+                <button class="btn btn-danger" type="button" (click)="outEventClick()"><i class="fa fa-close"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- contenedor de las tablas de perfil -->
+        <div class="d-grid">
+            <!-- tabla de roles asignados -->
+             <div class="row">
+                 <div class="col">
+                     <div>
+                         Pefiles asignados
+                     </div>
+                     <div>
+                         <table class="table table-striped">
+                             <thead>
+                                 <th>Perfil</th>
+                                 <th></th>
+                             </thead>
+                             <tbody>
+                                 <tr *ngFor="let profileByUser of profilesByUser">
+                                     <td>
+                                         {{ profileByUser.profilename }}
+                                     </td>
+                                     <td class="text-end">
+                                         <button class="btn btn-warning" type="button" (click)="quitProfile(profileByUser)"> <i class="fa fa-close"></i> Quitar</button>
+                                     </td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <!-- tabla de roles del sistema -->
+                  <div class="col">
+                     <div>
+                         Pefiles del sistema
+                     </div>
+                     <div>
+                         <table class="table table-striped">
+                             <thead>
+                                 <th>Perfil</th>
+                                 <th></th>
+                             </thead>
+                             <tbody>
+                                 <tr *ngFor="let profileSystem of profilesSystem">
+                                     <td>
+                                         {{ profileSystem.profilename }}
+                                     </td>
+                                     <td class="text-end">
+                                         <button class="btn btn-success" type="button" (click)="addProfiles(profileSystem)"> <i class="fa fa-plus"></i> Agregar</button>
+                                     </td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                  </div>
+             </div>
+        </div>
+    </div>
+</div>

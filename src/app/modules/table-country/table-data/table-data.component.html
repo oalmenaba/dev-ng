@@ -1,0 +1,47 @@
+<div class="d-flex flex-column w-75">
+    <div class="h2">
+        Lista de pa&iacute;ses registrados
+    </div>
+    <div>
+        <app-newcountry></app-newcountry>
+        <!-- <button class="btn btn-success" type="button">Nuevo pa&iacute;s</button> -->
+    </div>
+    <div class="d-flex justify-content-center">
+        <table class="table">
+            <thead>
+                <th>Pa&iacute;s</th>
+                <th>Acr&oacute;nimo</th>
+                <th>C&oacute;digo de pa&iacute;s</th>
+                <th>Continente</th>
+                <th class="text-end">Opciones</th>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="statusData==='init'">
+                    <!-- Cargando: cuando el componente aún no haya cargado la información de los países -->
+                     <tr>
+                        <td colspan="4" class="text-center">Cargando pa&iacute;ses...</td>
+                     </tr>
+                </ng-container>
+                <ng-container *ngIf="statusData=='success'">
+                    <!-- Cargado - Con datos: Cuando el componente tiene información -->
+                     <tr *ngFor="let country of counstries">
+                        <td> {{ country.name }}</td>
+                        <td> {{ country.acronym }}</td>
+                        <td> {{ country.countryCode }} </td>
+                        <td> {{ country.continent }} </td>
+                        <td class="text-end">
+                            <button class="btn btn-primary mx-1" type="button"><i class="fa fa-pencil"></i> </button> 
+                            <button class="btn btn-danger" type="button"> <i class="fa fa-trash"></i> </button>
+                        </td>
+                     </tr>
+                </ng-container>
+                <ng-container *ngIf="statusData=='empty'">
+                    <!-- Vacío: Cuando no existen datos para mostrar -->
+                    <tr>
+                        <td colspan="4" class="text-center">Sin pa&iacute;ses registrads</td>
+                     </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

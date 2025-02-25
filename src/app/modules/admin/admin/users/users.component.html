@@ -1,0 +1,26 @@
+<div>
+    <div class="display-4">
+        Usuarios del sistema
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th>#</th>
+            <th>Nombre de usuario</th>
+            <th>Email</th>
+            <th>Opciones</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of systemUser">
+                <td>{{ user.userid }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button class="btn btn-primary" type="button" [disabled]="userSelected.userid" (click)="eventSelectUser(user)">Actualizar roles</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div [hidden]="!userSelected.userid">
+        <app-profile (outEvent)="dataUserRestore()"></app-profile>
+    </div>
+</div>

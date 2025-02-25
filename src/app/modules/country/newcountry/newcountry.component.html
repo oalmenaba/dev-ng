@@ -1,0 +1,48 @@
+<button data-bs-toggle="modal" [attr.data-bs-target]="'#country-'+id" class="btn btn-success">
+    <i class="fa fa-plus"></i>Nuevo
+</button>
+<div class="modal fade" [id]="'country-'+id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="h2">
+                    Pa&iacute;ses
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- ATRIBUTOS DEL FORMULARIO -->
+                <form [formGroup]="frmCountryRx">
+                    <div>
+                        <label for="nameid">Nombre:</label>
+                        <input class="form-control" type="text" formControlName="name" name="namename" id="nameid">
+                    </div>
+                    <div>
+                        <label for="acronymid">Acr&oacute;nimo:</label>
+                        <input class="form-control" type="text" formControlName="acronym" name="acronymname"
+                            id="acronymid">
+                    </div>
+                    <div>
+                        <label for="countryCodeid">C&oacute;digo de pa&iacute;s:</label>
+                        <input class="form-control" type="text" formControlName="countryCode" name="contryCodename"
+                            id="countryCodeid">
+                    </div>
+                    <div>
+                        <label for="continentid">Continente:</label>
+                        <select formControlName="continent" class="form-select" name="continentname" id="continentid">
+                            <option value="">Seleccione un continente</option>
+                            <option value="America">Am&eacute;rica</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Europa">Europa</option>
+                            <option value="Africa">&Aacute;frica</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary"  (click)="saveCountry()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
